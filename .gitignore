@@ -1,0 +1,36 @@
+# R
+.Rhistory
+.Rapp.history
+.RData
+.Ruserdata
+*.Rproj
+*.Rproj.user
+
+# Output files
+*.png
+*.pdf
+*.jpg
+*.jpeg
+*.svg
+*.html
+
+# Data files (uncomment if you don't want to track data)
+# *.csv
+# *.Rdata
+# *.RData
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.log
+
