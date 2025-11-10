@@ -6,13 +6,14 @@
 *.Rproj
 *.Rproj.user
 
-# Output files
-*.png
+# Output files (but keep images folder)
 *.pdf
 *.jpg
 *.jpeg
 *.svg
 *.html
+# Keep PNG files in images folder for documentation
+!images/*.png
 
 # Data files (uncomment if you don't want to track data)
 # *.csv

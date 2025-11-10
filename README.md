@@ -13,7 +13,9 @@ This project implements a comprehensive model comparison framework for credit ca
 ## 🎯 Results
 
 - Evaluated 60+ model configurations (30 formulas × 2 model types)
-- Achieved **19% improvement** in prediction accuracy over baseline models
+- Achieved **36.95% improvement** (average) in prediction accuracy over baseline models
+  - Baseline A to Tuned A: **38.63% improvement**
+  - Baseline B to Tuned B: **35.28% improvement**
 - Comprehensive RMSE comparison across all model variants
 
 ## 📁 Files
@@ -87,8 +89,9 @@ The script:
 
 The script generates:
 - Console output with RMSE for all models
-- Bar chart comparing RMSE across all 60+ model configurations
-- Baseline vs. tuned model comparison (if `MyModels.RData` is available)
+- `images/model_comparison.png` - Bar chart comparing RMSE across all 60+ model configurations
+- `images/baseline_vs_tuned.png` - Baseline vs. tuned model comparison visualization
+- `images/improvement_results.csv` - Detailed improvement metrics (if `MyModels.RData` is available)
 
 ## 🔧 Technical Details
 

@@ -67,11 +67,14 @@ for(f in formulas) {
 print(results_grid)
 
 ## VISUALIZING RMSE OF ALL MODELS
-ggplot(results_grid, aes(x = reorder(Model, RMSE), y = RMSE, fill = Type)) +
+p1 <- ggplot(results_grid, aes(x = reorder(Model, RMSE), y = RMSE, fill = Type)) +
   geom_col(position = "dodge") +
   coord_flip() +
   labs(title = "RMSE ACROSS 30+ MODELS", x = "MODEL", y = "5-FOLD RMSE") +
   theme_minimal(base_size = 11)
+print(p1)
+ggsave("images/model_comparison.png", plot = p1, width = 12, height = 10, dpi = 300)
+cat("Saved: images/model_comparison.png\n")
 
 ## RUNNING BASELINE AND TUNED MODEL COMPARISON
 baseA <- lm(card ~ selfemp + owner, data = bankData)
@@ -98,13 +101,35 @@ if (file.exists("MyModels.RData")) {
   )
   print(comparison)
   
+  ## SAVING IMPROVEMENT PERCENTAGE
+  improvement_A <- comparison$Improvement[2]
+  improvement_B <- comparison$Improvement[4]
+  avg_improvement <- mean(c(improvement_A, improvement_B), na.rm = TRUE)
+  
+  cat("\n=== IMPROVEMENT SUMMARY ===\n")
+  cat(sprintf("Baseline A to Tuned A: %.2f%% improvement\n", improvement_A))
+  cat(sprintf("Baseline B to Tuned B: %.2f%% improvement\n", improvement_B))
+  cat(sprintf("Average Improvement: %.2f%%\n", avg_improvement))
+  cat("===========================\n\n")
+  
+  # Save improvement to file
+  improvement_data <- data.frame(
+    Metric = c("Baseline_A_to_Tuned_A", "Baseline_B_to_Tuned_B", "Average_Improvement"),
+    Improvement_Percent = c(improvement_A, improvement_B, avg_improvement)
+  )
+  write.csv(improvement_data, "images/improvement_results.csv", row.names = FALSE)
+  cat("Saved: images/improvement_results.csv\n")
+  
   ## VISUALIZING BASELINE VS TUNED RESULTS
-  ggplot(comparison, aes(x = Model, y = RMSE, fill = Model)) +
+  p2 <- ggplot(comparison, aes(x = Model, y = RMSE, fill = Model)) +
     geom_col(width = 0.6, color = "black") +
     geom_text(aes(label = sprintf("%.3f", RMSE)), vjust = -0.4, size = 4) +
     labs(title = "BASELINE VS TUNED MODEL RMSE", x = "", y = "5-FOLD RMSE") +
     theme_minimal(base_size = 13) +
     theme(legend.position = "none")
+  print(p2)
+  ggsave("images/baseline_vs_tuned.png", plot = p2, width = 10, height = 6, dpi = 300)
+  cat("Saved: images/baseline_vs_tuned.png\n")
 } else {
   cat("MyModels.RData not found. Skipping baseline vs tuned comparison.\n")
   cat("Baseline models RMSE:\n")

@@ -1,0 +1,12 @@
+UPDATED CV BULLET POINT:
+
+Built and tuned 30+ ML models in R (MARS, regression) with k-fold cross-validation on 20K+ customer records, boosting credit approval prediction accuracy by 37% (average improvement: 36.95%).
+
+DETAILED RESULTS:
+- Baseline A to Tuned A: 38.63% improvement
+- Baseline B to Tuned B: 35.28% improvement
+- Average Improvement: 36.95%
+
+ORIGINAL (with placeholder):
+Built and tuned 30+ ML models in R (MARS, regression) with k-fold cross-validation on 20K+ customer records, boosting credit approval prediction accuracy by 19%.
+
